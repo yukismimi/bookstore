@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置命名空间，指向dao接口-->
+<mapper namespace="cn.yukismimi.mapper.BookMapper">
+
+    <resultMap id="bookMap" type="book">
+        <id column="book_id"  property="id" />
+        <result column="book_name"  property="bookName" />
+        <result column="author"  property="author" />
+        <result column="price"  property="price" />
+        <result column="stock"  property="stock" />
+        <result column="press"  property="press" />
+        <result column="other_info"  property="otherInfo" />
+        <result column="on_sell_status"  property="onSellStatus" />
+    </resultMap>
+
+    <!-- select one record -->
+    <select id="findByBookId" parameterType="int" resultType="cn.yukismimi.entity.Book">
+      SELECT * FROM book WHERE book_id = #{id}
+    </select>
+
+    <update id="modifyUser">
+      UPDATE book
+      SET book_name = #{bookName},
+      author = #{author},
+      price = #{price},
+      stock = #{stock},
+      press = #{press},
+      on_sell_status = #{onSellStatus}
+      WHERE book_id = #{bookId}
+    </update>
+
+    <insert id="addBook">
+      INSERT INTO book
+      VALUES (
+      #{bookName},
+      #{author},
+      #{price},
+      #{stock},
+      #{press},
+      #{otherInfo},
+      #{onSellStatus}
+      )
+    </insert>
+
+    <delete id="removeBookById">
+      DROP FROM book WHERE book_id = #{id}
+    </delete>
+    <!-- select all -->
+    <select id="findBookList" resultMap="bookMap">
+      SELECT * FROM book
+    </select>
+</mapper>
