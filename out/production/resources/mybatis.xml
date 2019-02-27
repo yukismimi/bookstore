@@ -4,9 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+    <!--
     <settings>
-        <setting name="logImpl" value="log4j"/>
+        <setting name="logImpl" value="LOG4J"/>
     </settings>
+    -->
 
     <typeAliases>
         <package name="cn.yukismimi.entity"/>

@@ -35,8 +35,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book findBookByName(String name) {
-        return bookMapper.findBookByName(name);
+    public List<Book> findBook(Book book) {
+        return bookMapper.findBook(book);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package cn.yukismimi.mapper;
 
 import cn.yukismimi.entity.Book;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface BookMapper {
 
     Book findBookById(int id);
 
-    Book findBookByName(String name);
+    List<Book> findBook(Book book);
 
     List<Book> findBookList();
 }

@@ -19,6 +19,11 @@ public class BookController {
         return bookService.findBookById(id);
     }
 
+    @GetMapping("book")
+    public List<Book> findBookById(@RequestBody Book book){
+        return bookService.findBook(book);
+    }
+
     @PostMapping("book")
     public void addBook(@RequestBody Book book){
         bookService.addBook(book);

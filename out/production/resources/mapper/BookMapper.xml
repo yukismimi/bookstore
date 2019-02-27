@@ -16,25 +16,43 @@
         <result column="on_sell_status"  property="onSellStatus" />
     </resultMap>
 
-    <!-- select one record -->
-    <select id="findByBookId" parameterType="int" resultType="cn.yukismimi.entity.Book">
-      SELECT * FROM book WHERE book_id = #{id}
+    <select id="findBook" resultMap="bookMap">
+        SELECT * FROM book
+        <where>
+            <if test="id != 0">book_id = #{id}</if>
+            <if test="bookName != null">AND book_name LIKE CONCAT('%',#{bookName},'%')</if>
+            <if test="author != null">AND author = #{author}</if>
+            <if test="press != null">AND press LIKE CONCAT('%',#{press},'%')</if>
+            <if test="onSellStatus != 0">AND on_sell_status = #{onSellStatus}</if>
+        </where>
     </select>
 
-    <update id="modifyUser">
+    <select id="findBookById" resultMap="bookMap">
+      SELECT * FROM book where book_id = #{id}
+    </select>
+
+    <select id="findBookList" resultMap="bookMap">
+      SELECT * FROM book
+    </select>
+
+
+    <update id="modifyBook">
       UPDATE book
-      SET book_name = #{bookName},
-      author = #{author},
-      price = #{price},
-      stock = #{stock},
-      press = #{press},
-      on_sell_status = #{onSellStatus}
-      WHERE book_id = #{bookId}
+      <set>
+          <if test="bookName != null">book_name = #{bookName},</if>
+          <if test="author != null">author = #{author},</if>
+          <if test="price != null">price = #{price},</if>
+          <if test="stock != null">stock = #{stock},</if>
+          <if test="press != null">press = #{press},</if>
+          <if test="onSellStatus != null">on_sell_status = #{onSellStatus}</if>
+      </set>
+      WHERE book_id = #{id}
     </update>
 
-    <insert id="addBook">
+    <insert id="addBook" useGeneratedKeys="true">
       INSERT INTO book
       VALUES (
+      #{id},
       #{bookName},
       #{author},
       #{price},
@@ -46,10 +64,8 @@
     </insert>
 
     <delete id="removeBookById">
-      DROP FROM book WHERE book_id = #{id}
+      DELETE FROM book
+      WHERE book_id = #{id}
     </delete>
-    <!-- select all -->
-    <select id="findBookList" resultMap="bookMap">
-      SELECT * FROM book
-    </select>
+
 </mapper>
