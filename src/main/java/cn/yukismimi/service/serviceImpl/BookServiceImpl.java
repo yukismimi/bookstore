@@ -15,8 +15,8 @@ public class BookServiceImpl implements BookService {
     BookMapper bookMapper;
 
     @Override
-    public void addBook(Book book) {
-        bookMapper.addBook(book);
+    public int addBook(Book book) {
+        return bookMapper.addBook(book);
     }
 
     @Override

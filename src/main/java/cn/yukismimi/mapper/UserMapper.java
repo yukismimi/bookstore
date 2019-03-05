@@ -1,20 +1,21 @@
 package cn.yukismimi.mapper;
 
 import cn.yukismimi.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface UserMapper {
 
-    void addUser(User user);
-
-    void removeUserById(int id);
+    int registerUser(User user);
 
     void modifyUser(User user);
 
-    User findById(int id);
-
-    User findByName(String name);
+    User findUserById(int id);
 
     List<User> findUserList();
+
+    List<User> findUser(User user);
+
+    void setPassword(@Param("id") int id, @Param("afterPassword")String afterPassword);
 }

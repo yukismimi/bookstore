@@ -1,28 +1,31 @@
 package cn.yukismimi.entity;
 
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("shoppingCart")
 public class ShoppingCart {
 
-  private String userId;
-  private String id;
+  private int bookId;
+  private int userId;
   private long amount;
 
 
-  public String getUserId() {
+  public int getBookId() {
+    return bookId;
+  }
+
+  public void setBookId(int bookId) {
+    this.bookId = bookId;
+  }
+
+
+  public int getUserId() {
     return userId;
   }
 
-  public void setUserId(String userId) {
+  public void setUserId(int userId) {
     this.userId = userId;
-  }
-
-
-  public String getid() {
-    return id;
-  }
-
-  public void setid(String id) {
-    this.id = id;
   }
 
 

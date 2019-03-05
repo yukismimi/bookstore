@@ -1,5 +1,6 @@
 import cn.yukismimi.entity.Book;
 import cn.yukismimi.mapper.BookMapper;
+import cn.yukismimi.service.BookService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +17,9 @@ public class BookTest {
     @Autowired
     private BookMapper bookMapper;
 
+    @Autowired
+    BookService bookService;
+
     @Test
     public void findBook(){
         Book book = new Book();
@@ -27,20 +31,22 @@ public class BookTest {
     @Test
     public void findBookById(){
         Book book = bookMapper.findBookById(1);
-        Assert.assertEquals(1,book.getid(),0);
+        Assert.assertEquals(1,book.getId(),0);
     }
 
     @Test
     public void findBookList() {
-        bookMapper.findBookList()
-                .forEach(System.out::println);
+        bookService.findBookList()
+            .forEach(System.out::println);
+        /*bookMapper.findBookList()
+                .forEach(System.out::println);*/
     }
 
     @Test
     public void addBook(){
         int id = bookMapper.findBookList()
                 .stream()
-                .map(Book::getid)
+                .map(Book::getId)
                 .max(Integer::compareTo)
                 .orElse(0);
 
@@ -70,7 +76,7 @@ public class BookTest {
     public void removeById(){
         int id = bookMapper.findBookList()
                 .stream()
-                .map(Book::getid)
+                .map(Book::getId)
                 .max(Integer::compareTo)
                 .orElse(0);
         if(id != 0){

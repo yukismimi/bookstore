@@ -3,17 +3,17 @@ package cn.yukismimi.entity;
 
 public class UserSecurityQuestion {
 
-  private String userId;
+  private String id;
   private long questionNo;
   private String answer;
 
 
-  public String getUserId() {
-    return userId;
+  public String getId() {
+    return id;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setId(String id) {
+    this.id = id;
   }
 
 

@@ -45,6 +45,7 @@
           <if test="stock != null">stock = #{stock},</if>
           <if test="press != null">press = #{press},</if>
           <if test="onSellStatus != null">on_sell_status = #{onSellStatus}</if>
+          <if test="otherInfo != null">other_info = #{otherInfo}</if>
       </set>
       WHERE book_id = #{id}
     </update>

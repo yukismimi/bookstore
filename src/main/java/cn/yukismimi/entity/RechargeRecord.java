@@ -4,7 +4,7 @@ package cn.yukismimi.entity;
 public class RechargeRecord {
 
   private String rechargeNo;
-  private String userId;
+  private String id;
   private java.sql.Timestamp rechargeTime;
   private long rechargeStatus;
   private long deleteFlag;
@@ -19,12 +19,12 @@ public class RechargeRecord {
   }
 
 
-  public String getUserId() {
-    return userId;
+  public String getId() {
+    return id;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setId(String id) {
+    this.id = id;
   }
 
 

@@ -1,8 +1,8 @@
 package cn.yukismimi.controller;
 
 import cn.yukismimi.entity.Book;
+import cn.yukismimi.other.Response;
 import cn.yukismimi.service.BookService;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,21 +12,29 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    BookService bookService;
+    private BookService bookService;
 
     @GetMapping("book")
-    public Book findBookById(@RequestParam("id") int id){
+    public Book findBookById(@RequestParam int id){
         return bookService.findBookById(id);
     }
 
-    @GetMapping("book")
-    public List<Book> findBookById(@RequestBody Book book){
+    @GetMapping("bookList")
+    public List<Book> findBookList(){
+        return bookService.findBookList();
+    }
+
+    @PostMapping("bookList")
+    public List<Book> findBook(@RequestBody Book book){
         return bookService.findBook(book);
     }
 
     @PostMapping("book")
-    public void addBook(@RequestBody Book book){
-        bookService.addBook(book);
+    public Response<Integer> addBook(@RequestBody Book book){
+        int data = bookService.addBook(book);
+        Response<Integer> resp = new Response<>();
+        resp.setData(data);
+        return resp;
     }
 
     @PutMapping("book")
@@ -35,13 +43,8 @@ public class BookController {
     }
 
     @DeleteMapping("book")
-    public void removeBookById(@RequestParam("id") int id){
+    public void removeBookById(@RequestParam("id") int id) {
         bookService.removeBookById(id);
-    }
-
-    @GetMapping("bookList")
-    public List<Book> findBookList(){
-        return bookService.findBookList();
     }
 
 }

@@ -5,7 +5,7 @@ import org.apache.ibatis.type.Alias;
 @Alias("user")
 public class User {
 
-  private String userId;
+  private int id;
   private String userName;
   private long age;
   private long gender;
@@ -14,12 +14,12 @@ public class User {
   private String otherInfo;
 
 
-  public String getUserId() {
-    return userId;
+  public int getId() {
+    return id;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setId(int id) {
+    this.id = id;
   }
 
 

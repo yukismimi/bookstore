@@ -6,8 +6,8 @@ public class Transaction {
   private String orderNo;
   private java.sql.Timestamp orderTime;
   private long orderStatus;
+  private String bookId;
   private String userId;
-  private String id;
   private String bookName;
   private double unitPrice;
   private double totalPrice;
@@ -50,6 +50,14 @@ public class Transaction {
   }
 
 
+  public String getBookId() {
+    return bookId;
+  }
+
+  public void setBookId(String bookId) {
+    this.bookId = bookId;
+  }
+
   public String getUserId() {
     return userId;
   }
@@ -57,16 +65,6 @@ public class Transaction {
   public void setUserId(String userId) {
     this.userId = userId;
   }
-
-
-  public String getid() {
-    return id;
-  }
-
-  public void setid(String id) {
-    this.id = id;
-  }
-
 
   public String getBookName() {
     return bookName;

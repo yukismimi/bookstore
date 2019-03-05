@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置命名空间，指向dao接口-->
+<mapper namespace="cn.yukismimi.mapper.UserMapper">
+
+    <resultMap id="userMap" type="user">
+        <id column="user_id"  property="id" />
+        <result column="user_name"  property="userName" />
+        <result column="age"  property="age" />
+        <result column="gender"  property="gender" />
+        <result column="mail_address"  property="mailAddress" />
+        <result column="password"  property="password" />
+        <result column="other_info"  property="otherInfo" />
+    </resultMap>
+
+    <select id="findUser" resultMap="userMap">
+        SELECT * FROM user
+        <where>
+            <if test="userName != null">AND user_name LIKE CONCAT('%',#{userName},'%')</if>
+            <if test="mailAddress != null">AND mail_address = #{mailAddress}</if>
+        </where>
+    </select>
+
+    <select id="findUserById" resultMap="userMap">
+      SELECT * FROM user where user_id = #{id}
+    </select>
+
+    <select id="findUserList" resultMap="userMap">
+      SELECT * FROM user
+    </select>
+
+
+    <update id="modifyUser">
+        UPDATE user
+        <set>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="mailAddress != null">mail_address = #{mailAddress},</if>
+            <if test="otherInfo != null">other_info = #{otherInfo},</if>
+        </set>
+        WHERE user_id = #{id}
+    </update>
+
+    <update id="setPassword">
+        UPDATE user
+        SET password = #{afterPassword}
+        WHERE user_id = #{id}
+    </update>
+
+    <insert id="registerUser" useGeneratedKeys="true" keyProperty="id">
+      INSERT INTO user
+      (user_id, user_name, mail_address, password)
+      VALUES (
+      #{id},
+      #{userName},
+      #{mailAddress},
+      #{password}
+      )
+    </insert>
+
+
+</mapper>

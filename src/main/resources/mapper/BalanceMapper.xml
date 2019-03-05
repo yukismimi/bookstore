@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置命名空间，指向dao接口-->
+<mapper namespace="cn.yukismimi.mapper.BalanceMapper">
+
+    <resultMap id="balanceMap" type="balance">
+        <id column="user_id"  property="id" />
+        <result column="balance"  property="balance" />
+    </resultMap>
+
+    <select id="queryBalance" resultMap="balanceMap">
+      SELECT * FROM balance WHERE user_id = #{id}
+    </select>
+
+    <update id="rechargeBalance">
+      UPDATE balance
+      SET balance = #{balance}
+      WHERE user_id = #{id}
+    </update>
+
+    <insert id="initBalance">
+      INSERT INTO balance (user_id, balance) values (#{id},#{balance})
+    </insert>
+
+</mapper>

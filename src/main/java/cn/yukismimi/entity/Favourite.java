@@ -4,7 +4,7 @@ package cn.yukismimi.entity;
 public class Favourite {
 
   private String userId;
-  private String id;
+  private String BookId;
 
 
   public String getUserId() {
@@ -15,13 +15,11 @@ public class Favourite {
     this.userId = userId;
   }
 
-
-  public String getid() {
-    return id;
+  public String getBookId() {
+    return BookId;
   }
 
-  public void setid(String id) {
-    this.id = id;
+  public void setBookId(String bookId) {
+    BookId = bookId;
   }
-
 }

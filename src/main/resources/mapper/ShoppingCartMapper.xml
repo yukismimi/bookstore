@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置命名空间，指向dao接口-->
+<mapper namespace="cn.yukismimi.mapper.ShoppingCartMapper">
+
+    <resultMap id="shoppingCartMap" type="shoppingCart">
+        <id column="user_id"  property="userId" />
+        <id column="book_id"  property="bookId" />
+        <result column="amount"  property="amount" />
+    </resultMap>
+
+    <select id="findShoppingCartList" resultMap="shoppingCartMap">
+        SELECT * FROM shopping_cart
+        WHERE user_id = #{userId}
+    </select>
+
+    <insert id="addItemToShoppingCart">
+      INSERT INTO shopping_cart
+      values (
+      #{userId},
+      #{bookId},
+      #{amount}
+      )
+    </insert>
+
+    <update id="modifyItemInShoppingCart">
+      UPDATE shopping_cart
+      SET amount = #{amount}
+      WHERE user_id = #{userId} AND book_id = #{bookId}
+    </update>
+
+    <delete id="removeItemFromShoppingCart">
+      DELETE FROM shopping_cart
+      WHERE user_id = #{userId} AND book_id = #{bookId}
+    </delete>
+
+    <delete id="removeAllFromShoppingCart">
+      DELETE FROM shopping_cart
+      WHERE user_id = #{userId}
+    </delete>
+</mapper>

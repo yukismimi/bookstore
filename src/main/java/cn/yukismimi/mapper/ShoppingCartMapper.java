@@ -6,15 +6,13 @@ import java.util.List;
 
 public interface ShoppingCartMapper {
 
-    void addShoppingCart(ShoppingCart shoppingCart);
+    int addItemToShoppingCart(ShoppingCart shoppingCart);
 
-    void removeShoppingCartById(int id);
+    int removeItemFromShoppingCart(ShoppingCart shoppingCart);
 
-    void modifyShoppingCart(ShoppingCart shoppingCart);
+    int removeAllFromShoppingCart(int userId);
 
-    ShoppingCart findById(int id);
+    int modifyItemInShoppingCart(ShoppingCart shoppingCart);
 
-    ShoppingCart findByName(String name);
-
-    List<ShoppingCart> findShoppingCartList();
+    List<ShoppingCart> findShoppingCartList(int userId);
 }

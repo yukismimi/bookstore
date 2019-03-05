@@ -3,7 +3,7 @@ package cn.yukismimi.entity;
 
 public class Adress {
 
-  private String userId;
+  private String id;
   private String province;
   private String city;
   private String dictrict;
@@ -13,12 +13,12 @@ public class Adress {
   private long receiverPhoneNumber;
 
 
-  public String getUserId() {
-    return userId;
+  public String getId() {
+    return id;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setId(String id) {
+    this.id = id;
   }
 
 

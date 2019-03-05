@@ -7,11 +7,11 @@ public class BookLabel {
   private String label;
 
 
-  public String getid() {
+  public String getId() {
     return id;
   }
 
-  public void setid(String id) {
+  public void setId(String id) {
     this.id = id;
   }
 
