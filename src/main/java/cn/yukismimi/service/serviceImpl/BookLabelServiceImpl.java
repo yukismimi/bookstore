@@ -1,38 +1,45 @@
 package cn.yukismimi.service.serviceImpl;
 
+import cn.yukismimi.entity.Book;
 import cn.yukismimi.entity.BookLabel;
+import cn.yukismimi.mapper.BookLabelMapper;
+import cn.yukismimi.mapper.BookMapper;
 import cn.yukismimi.service.BookLabelService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Service("BookLabelService")
 public class BookLabelServiceImpl implements BookLabelService {
-    @Override
-    public void addBookLabel(BookLabel bookLabel) {
 
+    @Autowired
+    BookLabelMapper bookLabelMapper;
+
+    @Autowired
+    BookMapper bookMapper;
+
+    @Override
+    public int addBookLabel(BookLabel bookLabel) {
+        return bookLabelMapper.addBookLabel(bookLabel);
     }
 
     @Override
-    public void removeBookLabelById(int id) {
-
+    public int removeBookLabel(BookLabel bookLabel) {
+        return bookLabelMapper.removeBookLabel(bookLabel);
     }
 
     @Override
-    public void modifyBookLabel(BookLabel bookLabel) {
-
+    public List<String> findLabelByBookId(int bookId) {
+        return bookLabelMapper.findLabelByBookId(bookId);
     }
 
     @Override
-    public BookLabel findById(int id) {
-        return null;
-    }
-
-    @Override
-    public BookLabel findByName(String name) {
-        return null;
-    }
-
-    @Override
-    public List<BookLabel> findBookLabelList() {
-        return null;
+    public List<Book> findBookByLabel(String label) {
+        return bookLabelMapper.findBookByLabel(label)
+                .stream()
+                .map(bookMapper::findBookById)
+                .collect(Collectors.toList());
     }
 }

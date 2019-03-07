@@ -1,20 +1,18 @@
 package cn.yukismimi.service;
 
+import cn.yukismimi.entity.Book;
 import cn.yukismimi.entity.BookLabel;
 
 import java.util.List;
 
 public interface BookLabelService {
 
-    void addBookLabel(BookLabel bookLabel);
+    int addBookLabel(BookLabel bookLabel);
 
-    void removeBookLabelById(int id);
+    int removeBookLabel(BookLabel bookLabel);
 
-    void modifyBookLabel(BookLabel bookLabel);
+    List<String> findLabelByBookId(int bookId);
 
-    BookLabel findById(int id);
+    List<Book> findBookByLabel(String label);
 
-    BookLabel findByName(String name);
-
-    List<BookLabel> findBookLabelList();
 }

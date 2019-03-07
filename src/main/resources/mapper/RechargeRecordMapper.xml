@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置命名空间，指向dao接口-->
+<mapper namespace="cn.yukismimi.mapper.RechargeRecordMapper">
+
+    <resultMap id="rechargeRecordMap" type="rechargeRecord">
+        <id column="recharge_no" property="rechargeNo"/>
+        <result column="recharge_time" property="rechargeTime"/>
+        <result column="user_id" property="userId"/>
+        <result column="recharge_status" property="rechargeStatus"/>
+        <result column="delete_flag" property="deleteFlag"/>
+    </resultMap>
+
+    <insert id="addRechargeRecord">
+        INSERT INTO recharge_record values (
+        #{rechargeNo},
+        #{userId},
+        #{rechargeAmount},
+        #{rechargeTime},
+        #{rechargeStatus},
+        #{deleteFlag}
+        )
+    </insert>
+
+    <select id="findRechargeRecordList" resultMap="rechargeRecordMap">
+        SELECT * FROM recharge_record WHERE user_id = #{userId}
+    </select>
+</mapper>

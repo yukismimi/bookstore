@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置命名空间，指向dao接口-->
+<mapper namespace="cn.yukismimi.mapper.TransactionMapper">
+
+    <resultMap id="transactionMap" type="transaction">
+        <id column="order_no"  property="orderNo" />
+        <result column="order_time"  property="orderTime" />
+        <result column="order_status"  property="orderStatus" />
+        <result column="book_id"  property="bookId" />
+        <result column="user_id"  property="userId" />
+        <result column="book_name"  property="bookName" />
+        <result column="unit_price"  property="unitPrice" />
+        <result column="total_price"  property="totalPrice" />
+        <result column="amount"  property="amount" />
+        <result column="province"  property="province" />
+        <result column="city"  property="city" />
+        <result column="dictrict"  property="dictrict" />
+        <result column="zipcode"  property="zipcode" />
+        <result column="adress_detail"  property="adressDetail" />
+        <result column="receiver_name"  property="receiverName" />
+        <result column="receiver_phone_number"  property="receiverPhoneNumber" />
+        <result column="other_message"  property="otherMessage" />
+        <result column="delete_flag"  property="deleteFlag" />
+    </resultMap>
+
+    <select id="findTransactionList" resultMap="transactionMap">
+        SELECT * FROM transaction WHERE user_id = #{userId}
+    </select>
+
+    <select id="findTransactionByOption" resultMap="transactionMap">
+      SELECT * FROM transaction WHERE user_id = #{userId}
+      <if test="orderNo != null">AND order_no = #{orderNo}</if>
+      <if test="bookName != null">AND book_name LIKE CONCAT('%',#{bookName},'%')</if>
+    </select>
+
+    <delete id="removeTransactionByOrderNo">
+        DELETE FROM transaction
+        WHERE order_no = #{orderNo}
+    </delete>
+
+    <insert id="createTransaction" useGeneratedKeys="true">
+      INSERT INTO transaction
+      VALUES (
+      #{orderNo},
+      #{orderTime},
+      #{orderStatus},
+      #{userId},
+      #{bookId},
+      #{bookName},
+      #{unitPrice},
+      #{totalPrice},
+      #{amount},
+      #{province},
+      #{city},
+      #{dictrict},
+      #{zipcode},
+      #{adressDetail},
+      #{receiverName},
+      #{receiverPhoneNumber},
+      #{otherMessage},
+      #{deleteFlag}
+      )
+    </insert>
+
+    <update id="modifyTransaction">
+        UPDATE transaction
+        SET order_status = #{orderStatus}
+        WHERE order_no = #{orderNo}
+    </update>
+
+</mapper>

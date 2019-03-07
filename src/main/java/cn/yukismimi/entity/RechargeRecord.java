@@ -1,13 +1,19 @@
 package cn.yukismimi.entity;
 
 
+import org.apache.ibatis.type.Alias;
+
+import java.time.LocalDateTime;
+
+@Alias("rechargeRecord")
 public class RechargeRecord {
 
   private String rechargeNo;
-  private String id;
-  private java.sql.Timestamp rechargeTime;
-  private long rechargeStatus;
-  private long deleteFlag;
+  private int userId;
+  private LocalDateTime rechargeTime;
+  private double rechargeAmount;
+  private int rechargeStatus;
+  private int deleteFlag;
 
 
   public String getRechargeNo() {
@@ -18,40 +24,43 @@ public class RechargeRecord {
     this.rechargeNo = rechargeNo;
   }
 
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public java.sql.Timestamp getRechargeTime() {
+  public LocalDateTime getRechargeTime() {
     return rechargeTime;
   }
 
-  public void setRechargeTime(java.sql.Timestamp rechargeTime) {
+  public void setRechargeTime(LocalDateTime rechargeTime) {
     this.rechargeTime = rechargeTime;
   }
 
+  public int getUserId() {
+    return userId;
+  }
 
-  public long getRechargeStatus() {
+  public void setUserId(int userId) {
+    this.userId = userId;
+  }
+
+  public double getRechargeAmount() {
+    return rechargeAmount;
+  }
+
+  public void setRechargeAmount(double rechargeAmount) {
+    this.rechargeAmount = rechargeAmount;
+  }
+
+  public int getRechargeStatus() {
     return rechargeStatus;
   }
 
-  public void setRechargeStatus(long rechargeStatus) {
+  public void setRechargeStatus(int rechargeStatus) {
     this.rechargeStatus = rechargeStatus;
   }
 
-
-  public long getDeleteFlag() {
+  public int getDeleteFlag() {
     return deleteFlag;
   }
 
-  public void setDeleteFlag(long deleteFlag) {
+  public void setDeleteFlag(int deleteFlag) {
     this.deleteFlag = deleteFlag;
   }
-
 }

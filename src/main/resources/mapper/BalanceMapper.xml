@@ -14,7 +14,7 @@
       SELECT * FROM balance WHERE user_id = #{id}
     </select>
 
-    <update id="rechargeBalance">
+    <update id="modifyBalance">
       UPDATE balance
       SET balance = #{balance}
       WHERE user_id = #{id}

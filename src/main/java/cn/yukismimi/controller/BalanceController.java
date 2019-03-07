@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class BalanceController {
 
+
     @Autowired
     private BalanceService balanceService;
 
@@ -17,7 +18,7 @@ public class BalanceController {
     }
 
     @PutMapping("balance")
-    public int rechargeBalance(@RequestParam int id,
+    public int modifyBalance(@RequestParam int id,
                                @RequestParam double rechargeAmount){
         return balanceService.rechargeBalance(id, rechargeAmount);
     }

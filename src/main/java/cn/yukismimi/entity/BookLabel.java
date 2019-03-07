@@ -1,20 +1,20 @@
 package cn.yukismimi.entity;
 
+import org.apache.ibatis.type.Alias;
 
+@Alias("bookLabel")
 public class BookLabel {
 
-  private String id;
+  private int bookId;
   private String label;
 
-
-  public String getId() {
-    return id;
+  public int getBookId() {
+    return bookId;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setBookId(int bookId) {
+    this.bookId = bookId;
   }
-
 
   public String getLabel() {
     return label;
@@ -23,5 +23,4 @@ public class BookLabel {
   public void setLabel(String label) {
     this.label = label;
   }
-
 }

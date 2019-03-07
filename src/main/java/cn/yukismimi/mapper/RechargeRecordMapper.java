@@ -6,15 +6,7 @@ import java.util.List;
 
 public interface RechargeRecordMapper {
 
-    void addRechargeRecord(RechargeRecord rechargeRecord);
+    int addRechargeRecord(RechargeRecord rechargeRecord);
 
-    void removeRechargeRecordById(int id);
-
-    void modifyRechargeRecord(RechargeRecord rechargeRecord);
-
-    RechargeRecord findById(int id);
-
-    RechargeRecord findByName(String name);
-
-    List<RechargeRecord> findRechargeRecordList();
+    List<RechargeRecord> findRechargeRecordList(int userId);
 }

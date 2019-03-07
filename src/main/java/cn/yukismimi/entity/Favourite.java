@@ -1,25 +1,47 @@
 package cn.yukismimi.entity;
 
 
+import org.apache.ibatis.type.Alias;
+
+import java.time.LocalDateTime;
+
+@Alias("favourite")
 public class Favourite {
 
-  private String userId;
-  private String BookId;
+  private String favId;
+  private int userId;
+  private int BookId;
+  private LocalDateTime addTime;
 
+  public String getFavId() {
+    return favId;
+  }
 
-  public String getUserId() {
+  public void setFavId(String favId) {
+    this.favId = favId;
+  }
+
+  public int getUserId() {
     return userId;
   }
 
-  public void setUserId(String userId) {
+  public void setUserId(int userId) {
     this.userId = userId;
   }
 
-  public String getBookId() {
+  public int getBookId() {
     return BookId;
   }
 
-  public void setBookId(String bookId) {
+  public void setBookId(int bookId) {
     BookId = bookId;
+  }
+
+  public LocalDateTime getAddTime() {
+    return addTime;
+  }
+
+  public void setAddTime(LocalDateTime addTime) {
+    this.addTime = addTime;
   }
 }

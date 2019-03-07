@@ -1,17 +1,23 @@
 package cn.yukismimi.entity;
 
 
+import org.apache.ibatis.type.Alias;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
+@Alias("transaction")
 public class Transaction {
 
   private String orderNo;
-  private java.sql.Timestamp orderTime;
-  private long orderStatus;
-  private String bookId;
-  private String userId;
+  private LocalDateTime orderTime;
+  private int orderStatus;
+  private int bookId;
+  private int userId;
   private String bookName;
   private double unitPrice;
   private double totalPrice;
-  private long amount;
+  private int amount;
   private String province;
   private String city;
   private String dictrict;
@@ -20,7 +26,7 @@ public class Transaction {
   private String receiverName;
   private long receiverPhoneNumber;
   private String otherMessage;
-  private long deleteFlag;
+  private int deleteFlag;
 
 
   public String getOrderNo() {
@@ -31,38 +37,35 @@ public class Transaction {
     this.orderNo = orderNo;
   }
 
-
-  public java.sql.Timestamp getOrderTime() {
+  public LocalDateTime getOrderTime() {
     return orderTime;
   }
 
-  public void setOrderTime(java.sql.Timestamp orderTime) {
+  public void setOrderTime(LocalDateTime orderTime) {
     this.orderTime = orderTime;
   }
 
-
-  public long getOrderStatus() {
+  public int getOrderStatus() {
     return orderStatus;
   }
 
-  public void setOrderStatus(long orderStatus) {
+  public void setOrderStatus(int orderStatus) {
     this.orderStatus = orderStatus;
   }
 
-
-  public String getBookId() {
+  public int getBookId() {
     return bookId;
   }
 
-  public void setBookId(String bookId) {
+  public void setBookId(int bookId) {
     this.bookId = bookId;
   }
 
-  public String getUserId() {
+  public int getUserId() {
     return userId;
   }
 
-  public void setUserId(String userId) {
+  public void setUserId(int userId) {
     this.userId = userId;
   }
 
@@ -74,7 +77,6 @@ public class Transaction {
     this.bookName = bookName;
   }
 
-
   public double getUnitPrice() {
     return unitPrice;
   }
@@ -82,7 +84,6 @@ public class Transaction {
   public void setUnitPrice(double unitPrice) {
     this.unitPrice = unitPrice;
   }
-
 
   public double getTotalPrice() {
     return totalPrice;
@@ -92,15 +93,13 @@ public class Transaction {
     this.totalPrice = totalPrice;
   }
 
-
-  public long getAmount() {
+  public int getAmount() {
     return amount;
   }
 
-  public void setAmount(long amount) {
+  public void setAmount(int amount) {
     this.amount = amount;
   }
-
 
   public String getProvince() {
     return province;
@@ -110,7 +109,6 @@ public class Transaction {
     this.province = province;
   }
 
-
   public String getCity() {
     return city;
   }
@@ -118,7 +116,6 @@ public class Transaction {
   public void setCity(String city) {
     this.city = city;
   }
-
 
   public String getDictrict() {
     return dictrict;
@@ -128,7 +125,6 @@ public class Transaction {
     this.dictrict = dictrict;
   }
 
-
   public long getZipcode() {
     return zipcode;
   }
@@ -136,7 +132,6 @@ public class Transaction {
   public void setZipcode(long zipcode) {
     this.zipcode = zipcode;
   }
-
 
   public String getAdressDetail() {
     return adressDetail;
@@ -146,7 +141,6 @@ public class Transaction {
     this.adressDetail = adressDetail;
   }
 
-
   public String getReceiverName() {
     return receiverName;
   }
@@ -154,7 +148,6 @@ public class Transaction {
   public void setReceiverName(String receiverName) {
     this.receiverName = receiverName;
   }
-
 
   public long getReceiverPhoneNumber() {
     return receiverPhoneNumber;
@@ -164,7 +157,6 @@ public class Transaction {
     this.receiverPhoneNumber = receiverPhoneNumber;
   }
 
-
   public String getOtherMessage() {
     return otherMessage;
   }
@@ -173,13 +165,11 @@ public class Transaction {
     this.otherMessage = otherMessage;
   }
 
-
-  public long getDeleteFlag() {
+  public int getDeleteFlag() {
     return deleteFlag;
   }
 
-  public void setDeleteFlag(long deleteFlag) {
+  public void setDeleteFlag(int deleteFlag) {
     this.deleteFlag = deleteFlag;
   }
-
 }

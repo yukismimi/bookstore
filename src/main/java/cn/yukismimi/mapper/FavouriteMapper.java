@@ -6,15 +6,9 @@ import java.util.List;
 
 public interface FavouriteMapper {
 
-    void addFavourite(Favourite favourite);
+    int addFavourite(Favourite favourite);
 
-    void removeFavouriteById(int id);
+    int removeFavouriteById(String favId);
 
-    void modifyFavourite(Favourite favourite);
-
-    Favourite findById(int id);
-
-    Favourite findByName(String name);
-
-    List<Favourite> findFavouriteList();
+    List<Favourite> findFavouriteList(int userId);
 }

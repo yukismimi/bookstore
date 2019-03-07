@@ -6,15 +6,11 @@ import java.util.List;
 
 public interface BookLabelMapper {
 
-    void addBookLabel(BookLabel bookLabel);
+    int addBookLabel(BookLabel bookLabel);
 
-    void removeBookLabelById(int id);
+    int removeBookLabel(BookLabel bookLabel);
 
-    void modifyBookLabel(BookLabel bookLabel);
+    List<String> findLabelByBookId(int bookId);
 
-    BookLabel findById(int id);
-
-    BookLabel findByName(String name);
-
-    List<BookLabel> findBookLabelList();
+    List<Integer> findBookByLabel(String label);
 }
