@@ -1,30 +1,29 @@
 package cn.yukismimi.entity;
 
+import org.apache.ibatis.type.Alias;
 
+@Alias("userSecurityQuestion")
 public class UserSecurityQuestion {
 
-  private String id;
-  private long questionNo;
+  private int userId;
+  private int questionNo;
   private String answer;
 
-
-  public String getId() {
-    return id;
+  public int getUserId() {
+    return userId;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setUserId(int userId) {
+    this.userId = userId;
   }
 
-
-  public long getQuestionNo() {
+  public int getQuestionNo() {
     return questionNo;
   }
 
-  public void setQuestionNo(long questionNo) {
+  public void setQuestionNo(int questionNo) {
     this.questionNo = questionNo;
   }
-
 
   public String getAnswer() {
     return answer;
@@ -33,5 +32,4 @@ public class UserSecurityQuestion {
   public void setAnswer(String answer) {
     this.answer = answer;
   }
-
 }

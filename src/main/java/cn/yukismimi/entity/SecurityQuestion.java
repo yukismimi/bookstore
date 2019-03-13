@@ -1,17 +1,19 @@
 package cn.yukismimi.entity;
 
+import org.apache.ibatis.type.Alias;
 
+@Alias("securityQuestion")
 public class SecurityQuestion {
 
-  private long questionNo;
+  private int questionNo;
   private String questionContent;
 
 
-  public long getQuestionNo() {
+  public int getQuestionNo() {
     return questionNo;
   }
 
-  public void setQuestionNo(long questionNo) {
+  public void setQuestionNo(int questionNo) {
     this.questionNo = questionNo;
   }
 

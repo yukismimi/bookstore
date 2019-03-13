@@ -1,38 +1,22 @@
 package cn.yukismimi.service.serviceImpl;
 
 import cn.yukismimi.entity.SecurityQuestion;
+import cn.yukismimi.mapper.SecurityQuestionMapper;
 import cn.yukismimi.service.SecurityQuestionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service("SecurityQuestionService")
 public class SecurityQuestionServiceImpl implements SecurityQuestionService {
-    @Override
-    public void addSecurityQuestion(SecurityQuestion securityQuestion) {
 
-    }
-
-    @Override
-    public void removeSecurityQuestionById(int id) {
-
-    }
-
-    @Override
-    public void modifySecurityQuestion(SecurityQuestion securityQuestion) {
-
-    }
-
-    @Override
-    public SecurityQuestion findById(int id) {
-        return null;
-    }
-
-    @Override
-    public SecurityQuestion findByName(String name) {
-        return null;
-    }
+    @Autowired
+    SecurityQuestionMapper securityQuestionMapper;
 
     @Override
     public List<SecurityQuestion> findSecurityQuestionList() {
-        return null;
+        return securityQuestionMapper.findSecurityQuestionList();
     }
+
 }

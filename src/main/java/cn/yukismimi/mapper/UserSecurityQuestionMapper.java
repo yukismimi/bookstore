@@ -1,20 +1,15 @@
 package cn.yukismimi.mapper;
 
 import cn.yukismimi.entity.UserSecurityQuestion;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface UserSecurityQuestionMapper {
 
-    void addUserSecurityQuestion(UserSecurityQuestion userSecurityQuestion);
+    int addUserSecurityQuestion(UserSecurityQuestion userSecurityQuestion);
 
-    void removeUserSecurityQuestionById(int id);
+    int modifyUserSecurityQuestion(@Param("userId") int userId, @Param("questionNo") int questionNo, @Param("answer") String answer);
 
-    void modifyUserSecurityQuestion(UserSecurityQuestion userSecurityQuestion);
-
-    UserSecurityQuestion findById(int id);
-
-    UserSecurityQuestion findByName(String name);
-
-    List<UserSecurityQuestion> findUserSecurityQuestionList();
+    List<UserSecurityQuestion> findUserSecurityQuestionList(int userId);
 }

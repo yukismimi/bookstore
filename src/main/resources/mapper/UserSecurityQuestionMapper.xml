@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置命名空间，指向dao接口-->
+<mapper namespace="cn.yukismimi.mapper.UserSecurityQuestionMapper">
+
+    <resultMap id="userSecurityQuestionMap" type="userSecurityQuestion">
+        <id column="user_id" property="userId"/>
+        <result column="question_no" property="questionNo"/>
+        <result column="answer" property="answer"/>
+    </resultMap>
+
+    <update id="modifyUserSecurityQuestion">
+        UPDATE user_security_question
+        SET
+            question_no = #{questionNo},
+            answer = #{answer}
+        WHERE user_id = #{userId}
+    </update>
+
+    <insert id="addUserSecurityQuestion">
+        INSERT INTO user_security_question VALUES (
+            #{userId},
+            #{questionNo},
+            #{answer}
+        )
+    </insert>
+
+    <select id="findUserSecurityQuestionList" resultMap="userSecurityQuestionMap">
+        SELECT question_no, answer
+        FROM user_security_question
+        WHERE user_id = #{userId}
+    </select>
+</mapper>

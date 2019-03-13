@@ -6,15 +6,9 @@ import java.util.List;
 
 public interface UserSecurityQuestionService {
 
-    void addUserSecurityQuestion(UserSecurityQuestion userSecurityQuestion);
+    int addUserSecurityQuestion(UserSecurityQuestion userSecurityQuestion);
 
-    void removeUserSecurityQuestionById(int id);
+    int modifyUserSecurityQuestion(int userId, int questionNo, String answer);
 
-    void modifyUserSecurityQuestion(UserSecurityQuestion userSecurityQuestion);
-
-    UserSecurityQuestion findById(int id);
-
-    UserSecurityQuestion findByName(String name);
-
-    List<UserSecurityQuestion> findUserSecurityQuestionList();
+    List<UserSecurityQuestion> findUserSecurityQuestionList(int userId);
 }
