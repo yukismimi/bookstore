@@ -15,7 +15,7 @@ public interface UserMapper {
 
     List<User> findUserList();
 
-    List<User> findUser(User user);
+    User findUser(User user);
 
     void setPassword(@Param("id") int id, @Param("afterPassword")String afterPassword);
 }

@@ -1,6 +1,6 @@
 package cn.yukismimi.controller;
 
-import cn.yukismimi.entity.Book;
+import cn.yukismimi.entity.ResponseData;
 import cn.yukismimi.entity.User;
 import cn.yukismimi.other.Response;
 import cn.yukismimi.service.UserService;
@@ -21,12 +21,17 @@ public class UserController {
     }
 
     @GetMapping("userList")
-    public List<User> findBookList(){
+    public List<User> findUserList(){
         return userService.findUserList();
     }
 
+    @PostMapping("login")
+    public ResponseData login(@RequestBody User user){
+        return userService.checkUser(user);
+    }
+
     @PostMapping("userList")
-    public List<User> findBook(@RequestBody User User){
+    public User findUser(@RequestBody User User){
         return userService.findUser(User);
     }
 
@@ -47,11 +52,5 @@ public class UserController {
         userService.changePassword(id, beforePassword, afterPassword);
     }
 
-    @PutMapping("test")
-    public Response<List<User>> test(){
-        Response<List<User>> response = new Response<>();
-        response.setData(findBookList());
-        return response;
-    }
 
 }

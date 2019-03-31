@@ -2,6 +2,7 @@ package cn.yukismimi.service.serviceImpl;
 
 import cn.yukismimi.entity.Balance;
 import cn.yukismimi.entity.Book;
+import cn.yukismimi.entity.ResponseData;
 import cn.yukismimi.entity.User;
 import cn.yukismimi.mapper.BalanceMapper;
 import cn.yukismimi.mapper.BookMapper;
@@ -30,6 +31,30 @@ public class UserServiceImpl implements UserService {
         balanceMapper.initBalance(balance);
     }
 
+
+    @Override
+    public ResponseData checkUser(User user){
+
+        ResponseData res = new ResponseData();
+
+        User userInfo = Optional.ofNullable(user)
+                .map(userMapper::findUser)
+                .orElse(null);
+
+        Boolean flag = Optional.ofNullable(userInfo)
+                .map(User::getPassword)
+                .map(p -> p.equals(user.getPassword()))
+                .orElse(false);
+
+        if(flag){
+            res.setCode(1);
+            res.setResult("success");
+            res.setData(userInfo);
+        }
+
+        return res;
+    }
+
     @Override
     public void modifyUser(User user) {
         userMapper.modifyUser(user);
@@ -41,7 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findUser(User user) {
+    public User findUser(User user) {
         return userMapper.findUser(user);
     }
 

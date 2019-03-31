@@ -9,7 +9,7 @@ public class ShoppingCart {
   private int bookId;
   private int userId;
   private long amount;
-
+  private Book bookInfo;
 
   public int getBookId() {
     return bookId;
@@ -35,6 +35,14 @@ public class ShoppingCart {
 
   public void setAmount(long amount) {
     this.amount = amount;
+  }
+
+  public Book getBookInfo() {
+    return bookInfo;
+  }
+
+  public void setBookInfo(Book bookInfo) {
+    this.bookInfo = bookInfo;
   }
 
 }
