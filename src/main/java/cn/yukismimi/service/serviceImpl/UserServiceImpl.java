@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.stream.Collectors.toList;
+
 @Service("UserService")
 public class UserServiceImpl implements UserService {
 
@@ -28,10 +30,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseData registerUser(User user) {
         ResponseData res = new ResponseData();
-        boolean isRegisted = Optional.ofNullable(user)
-                .map(userMapper::findUser)
-                .map(i -> i.size() >= 1)
-                .orElse(false);
+        boolean isRegisted =  findUserList().stream()
+                .filter(i -> i.getUserName().equals(user.getUserName()))
+                .collect(toList())
+                .size() > 0;
+
 
         if(!isRegisted){
             userMapper.registerUser(user);
@@ -51,20 +54,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseData checkUser(User user){
         ResponseData res = new ResponseData();
-        User userInfo = Optional.ofNullable(user)
-                .map(userMapper::findUser)
-                .map(i -> i.get(0))
-                .orElse(null);
 
-        Boolean flag = Optional.ofNullable(userInfo)
-                .map(User::getPassword)
-                .map(p -> p.equals(user.getPassword()))
-                .orElse(false);
+        User userVerified = findUserList().stream()
+                .filter(i -> i.getUserName().equals(user.getUserName()))
+                .findFirst()
+                .get();
+
+        boolean flag = Optional.ofNullable(userVerified)
+                        .map(User::getPassword)
+                        .map(i -> i.equals(user.getPassword()))
+                        .orElse(false);
 
         if(flag){
             res.setCode(1);
             res.setResult("success");
-            res.setData(userInfo);
+            res.setData(userVerified);
         }
 
         return res;

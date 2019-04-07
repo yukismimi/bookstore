@@ -43,26 +43,29 @@
 
     <insert id="createTransaction" useGeneratedKeys="true">
       INSERT INTO transaction
-      VALUES (
-      #{orderNo},
-      #{orderTime},
-      #{orderStatus},
-      #{userId},
-      #{bookId},
-      #{bookName},
-      #{unitPrice},
-      #{totalPrice},
-      #{amount},
-      #{province},
-      #{city},
-      #{dictrict},
-      #{zipcode},
-      #{adressDetail},
-      #{receiverName},
-      #{receiverPhoneNumber},
-      #{otherMessage},
-      #{deleteFlag}
+      VALUES
+      <foreach collection="list" item="transaction" separator=",">
+      (
+      #{transaction.orderNo},
+      #{transaction.orderTime},
+      #{transaction.orderStatus},
+      #{transaction.userId},
+      #{transaction.bookId},
+      #{transaction.bookName},
+      #{transaction.unitPrice},
+      #{transaction.totalPrice},
+      #{transaction.amount},
+      #{transaction.province},
+      #{transaction.city},
+      #{transaction.dictrict},
+      #{transaction.zipcode},
+      #{transaction.adressDetail},
+      #{transaction.receiverName},
+      #{transaction.receiverPhoneNumber},
+      #{transaction.otherMessage},
+      #{transaction.deleteFlag}
       )
+      </foreach>
     </insert>
 
     <update id="modifyTransaction">

@@ -1,12 +1,13 @@
 package cn.yukismimi.service;
 
+import cn.yukismimi.entity.ResponseData;
 import cn.yukismimi.entity.Transaction;
 
 import java.util.List;
 
 public interface TransactionService {
 
-    int createTransaction(Transaction transaction);
+    ResponseData createTransaction(List<Transaction> transactionList);
 
     int removeTransactionByOrderNo(String orderNo);
 

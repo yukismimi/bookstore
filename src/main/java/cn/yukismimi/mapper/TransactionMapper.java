@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface TransactionMapper {
 
-    int createTransaction(Transaction transaction);
+    int createTransaction(List<Transaction> transactionList);
 
     int removeTransactionByOrderNo(String orderNo);
 

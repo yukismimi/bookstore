@@ -1,11 +1,9 @@
 package cn.yukismimi.service.serviceImpl;
 
-import cn.yukismimi.entity.Adress;
-import cn.yukismimi.entity.Balance;
-import cn.yukismimi.entity.Book;
-import cn.yukismimi.entity.Transaction;
+import cn.yukismimi.entity.*;
 import cn.yukismimi.mapper.BalanceMapper;
 import cn.yukismimi.mapper.BookMapper;
+import cn.yukismimi.mapper.ShoppingCartMapper;
 import cn.yukismimi.mapper.TransactionMapper;
 import cn.yukismimi.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,29 +24,52 @@ public class TransactionServiceImpl implements TransactionService {
     @Autowired
     BalanceMapper balanceMapper;
 
+    @Autowired
+    ShoppingCartMapper shoppingCartMapper;
+
+
     @Override
-    public int createTransaction(Transaction transaction) {
-       return  Optional.ofNullable(transaction.getBookId())
-                .map(bookMapper::findBookById)
-                .map(i -> {
-                    transaction.setOrderTime(LocalDateTime.now());
-                    transaction.setOrderNo(UUID.randomUUID().toString());
-                    transaction.setOrderStatus(1);
-                    transaction.setBookName(i.getBookName());
-                    transaction.setUnitPrice(i.getPrice());
-                    transaction.setTotalPrice(i.getPrice() * transaction.getAmount());
-                    /*
-                        address相关
-                    */
-                    return transaction;
-                })
-                .map(i -> {
-                    transactionMapper.createTransaction(i);
-                    Balance balance = balanceMapper.queryBalance(i.getUserId());
-                    balance.setBalance(balance.getBalance()-i.getTotalPrice());
-                    return balanceMapper.modifyBalance(balance);
-                })
-               .get();
+    public ResponseData createTransaction(List<Transaction> transactionList) {
+
+        ResponseData res = new ResponseData();
+        List<ShoppingCart> shoppingCartList = new ArrayList<>();
+        double sum = 0d;
+
+        int uid = Optional.ofNullable(transactionList)
+                .map(list -> list.get(0).getUserId())
+                .orElse(-1);
+
+        for(Transaction transaction : transactionList) {
+
+            transaction.setOrderNo(UUID.randomUUID().toString());
+            transaction.setOrderTime(LocalDateTime.now());
+            transaction.setOrderStatus(1);
+            transaction.setTotalPrice(transaction.getUnitPrice() * transaction.getAmount());
+
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.setUserId(transaction.getUserId());
+            shoppingCart.setBookId(transaction.getBookId());
+            shoppingCartList.add(shoppingCart);
+
+            sum += transaction.getTotalPrice();
+        }
+
+        if(uid != -1) {
+            double balance = balanceMapper.queryBalance(uid).getBalance();
+            if(balance > sum){
+                Balance bls = new Balance();
+                bls.setBalance(balance-sum);
+                bls.setId(uid);
+                balanceMapper.modifyBalance(bls);
+                transactionMapper.createTransaction(transactionList);
+                shoppingCartList.forEach(shoppingCartMapper::removeItemFromShoppingCart);
+
+                res.setCode(1);
+                res.setResult("success");
+            }
+        }
+
+        return res;
     }
 
     @Override

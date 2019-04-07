@@ -1,6 +1,7 @@
 package cn.yukismimi.controller;
 
 import cn.yukismimi.entity.Book;
+import cn.yukismimi.entity.ResponseData;
 import cn.yukismimi.entity.Transaction;
 import cn.yukismimi.mapper.BookMapper;
 import cn.yukismimi.service.TransactionService;
@@ -33,8 +34,8 @@ public class TransactionController {
 
 
     @PostMapping("Transaction")
-    public int createTransaction(@RequestBody Transaction transaction){
-        return transactionService.createTransaction(transaction);
+    public ResponseData createTransaction(@RequestBody List<Transaction> transactionList){
+        return transactionService.createTransaction(transactionList);
     }
 
     @PutMapping("Transaction")
