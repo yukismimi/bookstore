@@ -31,13 +31,13 @@ public class UserController {
     }
 
     @PostMapping("userList")
-    public User findUser(@RequestBody User User){
+    public List<User>  findUser(@RequestBody User User){
         return userService.findUser(User);
     }
 
     @PostMapping("user")
-    public void registerUser(@RequestBody User user){
-        userService.registerUser(user);
+    public ResponseData registerUser(@RequestBody User user){
+        return userService.registerUser(user);
     }
 
     @PutMapping("user")
@@ -51,6 +51,4 @@ public class UserController {
                                @RequestParam String afterPassword){
         userService.changePassword(id, beforePassword, afterPassword);
     }
-
-
 }

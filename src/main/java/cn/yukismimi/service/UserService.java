@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
 
-    void registerUser(User user);
+    ResponseData registerUser(User user);
 
     ResponseData checkUser(User user);
 
@@ -15,7 +15,7 @@ public interface UserService {
 
     User findUserById(int id);
 
-    User findUser(User user);
+    List<User>  findUser(User user);
 
     List<User> findUserList();
 

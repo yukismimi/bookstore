@@ -9,7 +9,9 @@ public interface UserSecurityQuestionMapper {
 
     int addUserSecurityQuestion(UserSecurityQuestion userSecurityQuestion);
 
-    int modifyUserSecurityQuestion(@Param("userId") int userId, @Param("questionNo") int questionNo, @Param("answer") String answer);
+    int modifyUserSecurityQuestion(@Param("userId") int userId,
+                                   @Param("questionNo") int questionNo,
+                                   @Param("answer") String answer);
 
     List<UserSecurityQuestion> findUserSecurityQuestionList(int userId);
 }

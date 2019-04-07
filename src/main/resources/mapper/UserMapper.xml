@@ -52,11 +52,10 @@
 
     <insert id="registerUser" useGeneratedKeys="true" keyProperty="id">
       INSERT INTO user
-      (user_id, user_name, mail_address, password)
+      (user_id, user_name, password)
       VALUES (
       #{id},
       #{userName},
-      #{mailAddress},
       #{password}
       )
     </insert>

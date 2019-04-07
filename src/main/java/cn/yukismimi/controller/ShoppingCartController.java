@@ -44,7 +44,7 @@ public class ShoppingCartController {
     }
 
     @PostMapping("shoppingCart")
-    public int addItemToShoppingCart(@RequestBody ShoppingCart shoppingCart){
+        public int addItemToShoppingCart(@RequestBody ShoppingCart shoppingCart){
         return shoppingCartService.addItemToShoppingCart(shoppingCart);
     }
 

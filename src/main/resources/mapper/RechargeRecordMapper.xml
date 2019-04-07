@@ -8,6 +8,7 @@
     <resultMap id="rechargeRecordMap" type="rechargeRecord">
         <id column="recharge_no" property="rechargeNo"/>
         <result column="recharge_time" property="rechargeTime"/>
+        <result column="recharge_amount" property="rechargeAmount"/>
         <result column="user_id" property="userId"/>
         <result column="recharge_status" property="rechargeStatus"/>
         <result column="delete_flag" property="deleteFlag"/>

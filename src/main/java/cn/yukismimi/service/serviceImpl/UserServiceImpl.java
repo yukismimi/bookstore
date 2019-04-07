@@ -22,23 +22,38 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     BalanceMapper balanceMapper;
+
+
+
     @Override
-    public void registerUser(User user) {
-        userMapper.registerUser(user);
-        Balance balance = new Balance();
-        balance.setId(user.getId());
-        balance.setBalance(0d);
-        balanceMapper.initBalance(balance);
+    public ResponseData registerUser(User user) {
+        ResponseData res = new ResponseData();
+        boolean isRegisted = Optional.ofNullable(user)
+                .map(userMapper::findUser)
+                .map(i -> i.size() >= 1)
+                .orElse(false);
+
+        if(!isRegisted){
+            userMapper.registerUser(user);
+            Balance balance = new Balance();
+            balance.setId(user.getId());
+            balance.setBalance(0d);
+            balanceMapper.initBalance(balance);
+            res.setCode(1);
+            res.setResult("success");
+            res.setData(user.getId());
+        }
+
+        return res;
     }
 
 
     @Override
     public ResponseData checkUser(User user){
-
         ResponseData res = new ResponseData();
-
         User userInfo = Optional.ofNullable(user)
                 .map(userMapper::findUser)
+                .map(i -> i.get(0))
                 .orElse(null);
 
         Boolean flag = Optional.ofNullable(userInfo)
@@ -66,7 +81,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUser(User user) {
+    public List<User> findUser(User user) {
         return userMapper.findUser(user);
     }
 
