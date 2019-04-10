@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置命名空间，指向dao接口-->
+<mapper namespace="cn.yukismimi.mapper.BookClassMapper">
+
+    <resultMap id="bookClassMap" type="bookClass">
+        <id column="class"  property="clazz" />
+        <id column="sub_class"  property="subClass" />
+        <result column="class_name"  property="className" />
+        <result column="sub_class_name"  property="subClassName" />
+    </resultMap>
+
+    <select id="findBookClass" resultMap="bookClassMap">
+      SELECT * FROM book_class
+    </select>
+
+
+</mapper>
