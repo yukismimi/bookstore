@@ -27,6 +27,11 @@ public class TransactionController {
         return transactionService.findTransactionByOption(transaction);
     }
 
+    @GetMapping("Transaction")
+    public List<Transaction> findTransaction(){
+        return transactionService.findTransaction();
+    }
+
     @DeleteMapping("Transaction")
     public int removeTransactionByOrderNo(@RequestParam String orderNo){
         return transactionService.removeTransactionByOrderNo(orderNo);

@@ -30,6 +30,10 @@
         SELECT * FROM transaction WHERE user_id = #{userId}
     </select>
 
+    <select id="findTransaction" resultMap="transactionMap">
+        SELECT * FROM transaction
+    </select>
+
     <select id="findTransactionByOption" resultMap="transactionMap">
       SELECT * FROM transaction WHERE user_id = #{userId}
       <if test="orderNo != null">AND order_no = #{orderNo}</if>

@@ -16,4 +16,6 @@ public interface TransactionService {
     List<Transaction> findTransactionByOption(Transaction transaction);
 
     List<Transaction> findTransactionList(int userId);
+
+    List<Transaction> findTransaction();
 }

@@ -2,7 +2,6 @@ package cn.yukismimi.controller;
 
 import cn.yukismimi.entity.ResponseData;
 import cn.yukismimi.entity.User;
-import cn.yukismimi.other.Response;
 import cn.yukismimi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +13,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+
 
     @GetMapping("user")
     public User findUserById(@RequestParam int id){
@@ -51,4 +52,5 @@ public class UserController {
                                @RequestParam String afterPassword){
         userService.changePassword(id, beforePassword, afterPassword);
     }
+
 }

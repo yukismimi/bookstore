@@ -13,6 +13,7 @@ public class Book {
   private String press;
   private String otherInfo;
   private int onSellStatus;
+  private int bookClass;
 
 
   public int getId() {
@@ -86,6 +87,14 @@ public class Book {
     this.onSellStatus = onSellStatus;
   }
 
+  public int getBookClass() {
+    return bookClass;
+  }
+
+  public void setBookClass(int bookClass) {
+    this.bookClass = bookClass;
+  }
+
   @Override
   public String toString() {
     return "Book{" +
@@ -97,6 +106,7 @@ public class Book {
             ", press='" + press + '\'' +
             ", otherInfo='" + otherInfo + '\'' +
             ", onSellStatus=" + onSellStatus +
+            ", bookClass=" + bookClass +
             '}';
   }
 }

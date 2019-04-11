@@ -14,6 +14,7 @@
         <result column="press"  property="press" />
         <result column="other_info"  property="otherInfo" />
         <result column="on_sell_status"  property="onSellStatus" />
+        <result column="book_class" property="bookClass" />
     </resultMap>
 
     <select id="findBook" resultMap="bookMap">
@@ -44,8 +45,9 @@
           <if test="price != null">price = #{price},</if>
           <if test="stock != null">stock = #{stock},</if>
           <if test="press != null">press = #{press},</if>
-          <if test="onSellStatus != null">on_sell_status = #{onSellStatus}</if>
-          <if test="otherInfo != null">other_info = #{otherInfo}</if>
+          <if test="onSellStatus != null">on_sell_status = #{onSellStatus},</if>
+          <if test="otherInfo != null">other_info = #{otherInfo},</if>
+          <if test="bookClass != null">book_class = #{bookClass}</if>
       </set>
       WHERE book_id = #{id}
     </update>
@@ -60,7 +62,8 @@
       #{stock},
       #{press},
       #{otherInfo},
-      #{onSellStatus}
+      #{onSellStatus},
+      #{bookClass}
       )
     </insert>
 

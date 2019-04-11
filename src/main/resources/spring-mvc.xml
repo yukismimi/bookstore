@@ -23,6 +23,7 @@
     <!-- 跨域请求处理拦截器 -->
     <mvc:interceptors>
         <bean class="cn.yukismimi.intercepter.ProcessInterceptor"></bean>
+        <bean class="cn.yukismimi.intercepter.TokenInterceptor"></bean>
     </mvc:interceptors>
 
     <!-- 配置jsp 显示ViewResolver -->
