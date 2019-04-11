@@ -1,9 +1,7 @@
 package cn.yukismimi.controller;
 
-import cn.yukismimi.entity.Admin;
 import cn.yukismimi.entity.ResponseData;
 import cn.yukismimi.entity.User;
-import cn.yukismimi.other.Response;
 import cn.yukismimi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

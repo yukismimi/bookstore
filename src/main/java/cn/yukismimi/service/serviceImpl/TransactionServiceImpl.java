@@ -91,4 +91,9 @@ public class TransactionServiceImpl implements TransactionService {
     public List<Transaction> findTransactionList(int userId) {
         return transactionMapper.findTransactionList(userId);
     }
+
+    @Override
+    public List<Transaction> findTransaction() {
+        return transactionMapper.findTransaction();
+    }
 }
