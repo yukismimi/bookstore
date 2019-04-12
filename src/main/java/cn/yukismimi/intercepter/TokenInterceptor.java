@@ -18,6 +18,8 @@ public class TokenInterceptor implements HandlerInterceptor {
         }
 
         String token = request.getHeader("token");
+        if(token == null)
+            return false;
 
         return true;
     }
