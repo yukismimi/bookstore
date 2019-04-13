@@ -19,5 +19,5 @@ public interface UserService {
 
     List<User> findUserList();
 
-    void changePassword(int id, String beforePassword, String afterPassword);
+    ResponseData changePassword(int id, String beforePassword, String afterPassword);
 }

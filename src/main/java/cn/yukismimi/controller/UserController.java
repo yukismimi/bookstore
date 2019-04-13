@@ -47,10 +47,10 @@ public class UserController {
     }
 
     @PutMapping("password")
-    public void changePassword(@RequestParam int id,
+    public ResponseData changePassword(@RequestParam int id,
                                @RequestParam String beforePassword,
                                @RequestParam String afterPassword){
-        userService.changePassword(id, beforePassword, afterPassword);
+        return userService.changePassword(id, beforePassword, afterPassword);
     }
 
 }

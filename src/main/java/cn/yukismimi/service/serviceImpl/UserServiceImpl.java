@@ -95,13 +95,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changePassword(int id, String beforePassword, String afterPassword) {
+    public ResponseData changePassword(int id, String beforePassword, String afterPassword) {
         User user = findUserById(id);
-        Optional.ofNullable(user).ifPresent(u -> {
-            System.out.println(u.getPassword().equals(beforePassword));
-            if(u.getPassword().equals(beforePassword)){
-                userMapper.setPassword(id, afterPassword);
-            }
-        });
+
+        ResponseData res = new ResponseData();
+
+        boolean flag =  Optional.ofNullable(user)
+                .map(User::getPassword)
+                .map(password -> password.equals(beforePassword))
+                .orElse(false);
+
+
+        if(flag){
+            userMapper.setPassword(id,afterPassword);
+            res.setCode(1);
+            res.setResult("success");
+        }
+
+        return res;
     }
 }
