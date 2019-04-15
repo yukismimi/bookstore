@@ -1,5 +1,6 @@
 package cn.yukismimi.controller;
 
+import cn.yukismimi.entity.Admin;
 import cn.yukismimi.entity.ResponseData;
 import cn.yukismimi.entity.User;
 import cn.yukismimi.utils.AESUtils;
@@ -46,9 +47,19 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
              });
 
 
-        if( (url.equals("/admin") || url.equals("/login")) && ((ResponseData) body).getCode() == 1) {
+        if(url.equals("/login")&& ((ResponseData) body).getCode() == 1) {
             Object data = ((ResponseData) body).getData();
             int id = ((User) data).getId();
+            String localTime = df.format(LocalDateTime.now());
+            String token = id + "-" + localTime;
+            String encryptedToken =  AESUtils.encrypt(token,"yukismimi");
+            response.getHeaders().set("Token",encryptedToken);
+            response.getHeaders().set("Access-Control-Expose-Headers","Token");
+        }
+
+        if(url.equals("/admin")&& ((ResponseData) body).getCode() == 1) {
+            Object data = ((ResponseData) body).getData();
+            int id = ((Admin) data).getAdminId();
             String localTime = df.format(LocalDateTime.now());
             String token = id + "-" + localTime;
             String encryptedToken =  AESUtils.encrypt(token,"yukismimi");

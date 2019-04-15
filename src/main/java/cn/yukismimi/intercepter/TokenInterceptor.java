@@ -19,7 +19,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         }
 
         String token = request.getHeader("token");
-        String uid = request.getHeader("uid");
+        String id = request.getHeader("id");
 
         if(token == null || "".equals(token.trim())){
             response.setStatus(304);
@@ -27,7 +27,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         }
 
         String decryptedToken = AESUtils.decrypt(token,"yukismimi");
-        if(!decryptedToken.split("-")[0].equals(uid)) {
+        if(!decryptedToken.split("-")[0].equals(id)) {
             response.setStatus(304);
             return false;
         }
