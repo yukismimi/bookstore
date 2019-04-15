@@ -36,7 +36,7 @@ public class UserController {
         return userService.findUser(User);
     }
 
-    @PostMapping("user")
+    @PostMapping("register")
     public ResponseData registerUser(@RequestBody User user){
         return userService.registerUser(user);
     }

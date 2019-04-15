@@ -1,5 +1,6 @@
 package cn.yukismimi.intercepter;
 
+import cn.yukismimi.utils.AESUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,13 +14,23 @@ public class TokenInterceptor implements HandlerInterceptor {
 
         String url = request.getRequestURI();
 
-        if(url.equals("/login")){
+        if(url.equals("/login") || url.equals("/register") || url.equals("/admin")){
             return true;
         }
 
         String token = request.getHeader("token");
-        if(token == null)
+        String uid = request.getHeader("uid");
+
+        if(token == null || "".equals(token.trim())){
+            response.setStatus(304);
             return false;
+        }
+
+        String decryptedToken = AESUtils.decrypt(token,"yukismimi");
+        if(!decryptedToken.split("-")[0].equals(uid)) {
+            response.setStatus(304);
+            return false;
+        }
 
         return true;
     }
