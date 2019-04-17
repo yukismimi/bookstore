@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 暂时不使用
+ */
 @RestController
 public class UserSecurityQuestionController {
 
